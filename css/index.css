@@ -1,0 +1,12 @@
+@charset "utf-8";
+body,html{ height:100%;}
+.main{ min-width:960px; height:100%; background:url(../img/index/index_bg.jpg) no-repeat; position:relative;}
+h1{ color:#fff; position:absolute; top:200px; left:200px; font-size:50px;}
+h1:hover{ color:rgba(0,0,255,1);}
+.show{ width:400px; position:absolute; left:150px; top:100px;}
+.show span{font-size:20px; color:#fff; opacity:0;}
+ul{ width:600px; height:200px; position:absolute; right:100px; top:300px;}
+li{ width:160px; height:160px; background:#fff; border-radius:50%; border:20px solid #000; text-align:center; line-height:160px; font-size:20px; font-weight:bold; transition:1s all ease;}
+li:hover{ border:20px solid #fff; background:#000;}
+li:hover a{ color:#fff;}
+

@@ -1,0 +1,8 @@
+@charset "utf-8";
+body,html{ height:100%; color:#fff;}
+.main{ min-width:960px; height:100%; background:url(../img/my_resume/sea.jpg) no-repeat; background-size:100%;}
+.background{ width:960px; height:100%; margin:0 auto; background:rgba(0,204,204,0.7); overflow:hidden;}
+.photo{ width:200px; height:200px; display:block; border:5px solid #ccc; border-radius:50%; margin:100px auto 30px; transition:1s all ease;}
+.photo:hover{ transform:rotate(360deg);}
+.name{ width:120px; height:40px; line-height:40px; display:block; font-size:40px; margin:0 auto; text-align:center; font-weight:bold; background:-webkit-linear-gradient(45deg,red,yellow,blue);-webkit-background-clip:text; color:rgba(0,0,0,0);}
+.sex{ width:100px; height:30px; line-height:30px; display:block; font-size:30px; margin:20px auto; text-align:center;}

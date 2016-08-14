@@ -1,0 +1,18 @@
+@charset "utf-8";
+/*清除默认样式*/
+body,h1,h2,h3,h4,h5,h6,p,ul,ol,dl,dd,textarea,input{ padding:0; margin:0;}
+a{ text-decoration:none; color:#000;}
+img{ vertical-align:top; border:none;}
+li{ list-style:none;}
+input{ background:none; border:none; outline:none;}
+textarea{ resize:none;}
+body{ font-family:'Microsoft yahei';}
+
+/*常用*/
+.fl{ float:left;}
+.fr{ float:right;}
+.clearfix:after{ display:block; content:''; clear:both;}
+
+
+
+
