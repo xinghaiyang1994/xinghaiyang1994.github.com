@@ -1,9 +1,59 @@
 addReady(function(){
 	var project={};
+	var T1=document.getElementById('t1').offsetTop;
+	var T2=document.getElementById('clock').offsetTop;
+	var T3=document.getElementById('t3').offsetTop;
+	var T4=document.getElementById('photo_all').offsetTop;
+	var T5=document.getElementById('t5').offsetTop;
+	var T6=document.getElementById('t6').offsetTop;
+	var T7=document.getElementById('t7').offsetTop;
+	var T8=document.getElementById('t8').offsetTop;
+	var oToTop=document.getElementById('to_top');
+	var bSys=false;
+	window.onscroll=function(){
+		if(bSys)clearInterval(oToTop.timer);
+		bSys=true;
+		var cH=document.documentElement.clientHeight;
+		var sT=document.documentElement.scrollTop||document.body.scrollTop;
+		if(sT+cH>T4){
+			project.photoRing();
+		}
+		if(sT>1000){
+			oToTop.style.display='block';
+		}else{
+			oToTop.style.display='none';
+		}
+	};
+	oToTop.onclick=function(){
+		var start=document.documentElement.scrollTop||document.body.scrollTop;
+		var target=0;
+		var dis=target-start;
+		var count=Math.round(3000/30);
+		var n=0;
+		clearInterval(oToTop.timer);
+		oToTop.timer=setInterval(function(){
+			bSys=false;
+			n++;
+			var a=n/count;
+			var cur=start+dis*Math.pow(a,3);
+			document.documentElement.scrollTop=document.body.scrollTop=cur;
+			if(n==count){
+				clearInterval(oToTop.timer);
+			}	
+		},30);	
+	};
 	/*酷炫导航*/	
+	var oNav=document.getElementById('nav');
+	var aMod=getByClass(oNav,'mod1');
+	var arr=[T1,T2,T3,T4,T5,T6,T7,T8];
+	for(var i=0;i<aMod.length;i++){
+		(function(index){
+			aMod[index].onclick=function(){
+				scrollMove(aMod[index],arr[index],500*(index+1));
+			};
+		})(i);
+	}
 	project.nav=function(){
-		var oNav=document.getElementById('nav');
-		var aMod=getByClass(oNav,'mod1');
 		var arr=[];
 		for(var i=0;i<aMod.length;i++){
 			arr.push({left:aMod[i].offsetLeft,top:aMod[i].offsetTop});
@@ -156,14 +206,6 @@ addReady(function(){
 			oAll.style.transform='perspective(800px) rotateY('+rnd(-360,361)+'deg)';	
 		};
 	};
-	window.onscroll=function(){
-		var T=document.getElementById('photo_all').offsetTop;
-		var cH=document.documentElement.clientHeight;
-		var sT=document.documentElement.scrollTop||document.body.scrollTop;
-		if(sT+cH>T){
-			project.photoRing();
-		}
-	};
 	/*无缝滚动*/
 	project.scrollLeft=function(){
 		var oScro=document.getElementById('scroll_box');
@@ -179,4 +221,132 @@ addReady(function(){
 		},30);
 	};
 	project.scrollLeft();
+	/*酷炫菜单*/
+	project.menu=function(){
+		var oMen=document.getElementById('menu');
+		var aLi=oMen.children;
+		var oBar=document.getElementById('menu_bar');
+		var iNow=0;
+		var w=aLi[0].offsetWidth;
+		for(var i=0;i<aLi.length-1;i++){
+			aLi[i].index=i;
+			aLi[i].onmouseover=function(){
+				doMove(oBar,this.offsetLeft);
+			};
+			aLi[i].onmouseout=function(){
+				doMove(oBar,iNow*w);
+			};
+			aLi[i].onclick=function(){
+				iNow=this.index;	
+			};
+		}	
+	};
+	project.menu();
+	/*滚动翻页*/
+	project.scrollPage=function(){
+		var oS=document.getElementById('scroll_page');
+		var aLi=oS.children;
+		var oL=document.getElementById('left');
+		var oR=document.getElementById('right');
+		var arr=[];
+		for(var i=0;i<aLi.length;i++){
+			arr.push(aLi[i].className);
+		}
+		var bOk=false;
+		function fnScroll(){
+			for(var i=0;i<aLi.length;i++){
+				aLi[i].style.transition='1s all ease';
+				aLi[i].className=arr[i];
+			}
+			var oCur=getByClass(oS,'cur')[0];	
+			function fnTran(){
+				oCur.removeEventListener('transitionend',fnTran,false);
+				
+				for(var i=0;i<aLi.length;i++){
+					aLi[i].style.transition='';
+				}
+				bOk=false;
+			}
+			oCur.addEventListener('transitionend',fnTran,false);
+		}
+		oL.onclick=function(){
+			if(bOk)return;
+			bOk=true;
+			arr.unshift(arr.pop());
+			fnScroll();
+		};	
+		oR.onclick=function(){
+			if(bOk)return;
+			bOk=true;
+			arr.push(arr.shift());
+			fnScroll();
+		};	
+	};
+	project.scrollPage();
+	/*翻墙*/
+	project.turnWall=function(){
+		var oT=document.getElementById('turn_wall');
+		var aLi=oT.children;
+		function run(obj){
+			obj.onmouseover=function(ev){
+				var oEvent=ev||event;
+				var oFrom=oEvent.fromElement||oEvent.relatedTaregt;
+				if(obj.contains(oFrom))return;
+				var sT=document.documentElement.scrollTop||document.body.scrollTop;
+				var x=getPos(obj).left+obj.offsetWidth/2-oEvent.clientX;
+				var y=getPos(obj).top+obj.offsetHeight/2-oEvent.clientY-sT;
+				var c=Math.round((a2d(Math.atan2(y,x))+180)/90)%4;
+				var oS=obj.children[0];
+				oS.style.background='rgb('+rnd(0,256)+','+rnd(0,256)+','+rnd(0,256)+')';
+				switch(c){
+					case 0:
+					oS.style.left='150px';
+					oS.style.top=0;
+					break;
+					case 1:
+					oS.style.left=0;
+					oS.style.top='150px';
+					break;
+					case 2:
+					oS.style.left='-150px';
+					oS.style.top=0;
+					break;
+					case 3:
+					oS.style.left=0;
+					oS.style.top='-150px';
+					break;
+				}
+				move(oS,{top:0,left:0});
+			};	
+			obj.onmouseout=function(ev){
+				var oEvent=ev||event;
+				var oT=oEvent.toElement||oEvent.relatedTaregt;
+				if(obj.contains(oT))return;
+				var sT=document.documentElement.scrollTop||document.body.scrollTop;
+				var x=getPos(obj).left+obj.offsetWidth/2-oEvent.clientX;
+				var y=getPos(obj).top+obj.offsetHeight/2-oEvent.clientY-sT;
+				var c=Math.round((a2d(Math.atan2(y,x))+180)/90)%4;
+				var oS=obj.children[0];
+				oS.style.background='rgb('+rnd(0,256)+','+rnd(0,256)+','+rnd(0,256)+')';
+				switch(c){
+					case 0:
+					move(oS,{top:0,left:150});
+					break;
+					case 1:
+					move(oS,{top:-150,left:0});
+					break;
+					case 2:
+					move(oS,{top:0,left:-150});
+					break;
+					case 3:
+					move(oS,{top:-150,left:0});
+					break;
+				}
+			};	
+		}
+		for(var i=0;i<aLi.length;i++){
+			run(aLi[i]);
+		}
+	};
+	project.turnWall(); 
 });

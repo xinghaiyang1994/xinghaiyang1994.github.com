@@ -131,4 +131,58 @@ function toDou(n){
 function rnd(m,n){
 	return parseInt(m+Math.random()*(n-m));	
 }
+//酷炫菜单doMove
+function doMove(obj,target){
+	var iSpeed=0;
+	clearInterval(obj.timer);
+	obj.timer=setInterval(function(){
+		iSpeed+=(target-obj.offsetLeft)/5;
+		iSpeed*=0.8;
+		obj.style.left=obj.offsetLeft+iSpeed+'px';
+		if(Math.round(iSpeed)==0&&obj.offsetLeft==target){
+			clearInterval(obj.timer);	
+		}	
+	},30);
+}
+//getPos
+function getPos(obj){
+	var l=0;
+	var t=0;
+	while(obj){
+		l+=obj.offsetLeft;
+		t+=obj.offsetTop;
+		obj=obj.offsetParent;
+	}
+	return {left:l,top:t}
+}
+//a2d
+function a2d(n){
+	return n*180/Math.PI;	
+}
+//scrollMove
+function scrollMove(obj,dis,time){
+	var count=Math.round(time/30);
+	var n=0;
+	clearInterval(obj.timer);	
+	obj.timer=setInterval(function(){
+		n++;
+		var a=n/count;
+		var cur=dis*Math.pow(a,3);
+		document.documentElement.scrollTop=document.body.scrollTop=cur;
+		if(n==count){
+			clearInterval(obj.timer);	
+		}	
+	},30);
+}
+
+
+
+
+
+
+
+
+
+
+
 

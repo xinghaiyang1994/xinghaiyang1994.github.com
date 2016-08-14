@@ -1,6 +1,5 @@
 @charset "utf-8";
-html,body{ height:100%;}
-body{ height:10000px;}
+html{ height:100%;}
 .background{ min-width:960px; height:100%; background:rgba(0,0,51,0.3) url(../img/index/index_bg.jpg) no-repeat;}
 .main{ width:960px; height:100%; margin:0 auto; background:rgba(102,102,102,0.5); overflow:hidden;}
 h1{ width:100px; height:100px; background:url(../img/my_project/return_home.jpg) no-repeat; background-size:100%; border-radius:15px; margin:20px 0 0 20px;}
@@ -62,18 +61,42 @@ h1 a{ width:100%; height:100%; display:block; text-indent:-999em;}
 .scroll img{ width:200px; height:300px;}
 .scroll_box{ width:800px; height:300px; border:5px solid #ccc; border-radius:10px; margin:0 auto; position:relative; overflow:hidden;}
 .scroll_box ul{ position:absolute;}
-
-
-
-
-
-
-
-
-
-
-
-
+/*酷炫菜单*/
+.menu{ width:960px; height:400px;}
+.menu p{ width:140px; height:50px; margin:0 auto; background:-webkit-linear-gradient(45deg,red,yellow,blue,green); line-height:50px; font-size:30px; font-weight:bold; text-align:center; -webkit-background-clip:text;color:rgba(51,0,204,0);}
+.menu ul{ width:600px; height:50px; border:4px solid #ccc; margin:100px auto; position:relative; border-radius:6px;}
+.menu li{ width:150px; height:100%; text-align:center; line-height:50px; font-weight:bold; z-index:2; position:relative;}
+#menu_bar{ position:absolute; top:0; left:0; background:rgba(51,102,255,.4); z-index:1;}
+/*滚动翻页*/
+.scroll_page{ width:960px; height:500px; position:relative; overflow:hidden;}
+#left{ width:29px; height:53px; position:absolute; background:url(../img/my_project/arrow_left.png) no-repeat; left:10px; top:200px; cursor:pointer;}
+#right{ width:29px; height:53px; position:absolute; background:url(../img/my_project/arrow_right.png) no-repeat; right:10px; top:200px; cursor:pointer;}
+.scroll_page ul{ width:200px; height:300px; margin:50px auto; position:relative;}
+.scroll_page li{ width:100%; height:100%; background:url(../img/my_project/ring1.jpg) no-repeat; background-size:200px 300px; transform:perspective(800px); position:absolute; display:none;}
+.scroll_page .l2{ transform:perspective(800px) translateX(-250px) rotateY(45deg); opacity:0; z-index:1; display:block;}
+.scroll_page .l1{ transform:perspective(800px) translateX(-200px) rotateY(45deg); z-index:2; display:block;}
+.scroll_page .cur{ transform:perspective(800px); z-index:3; display:block;}
+.scroll_page .r1{ transform:perspective(800px) translateX(200px) rotateY(-45deg); z-index:2; display:block;}
+.scroll_page .r2{ transform:perspective(800px) translateX(250px) rotateY(-45deg); opacity:0; z-index:1; display:block;}
+.scroll_page li:nth-child(2){ background:url(../img/my_project/ring2.jpg) no-repeat; background-size:200px 300px;}
+.scroll_page li:nth-child(3){ background:url(../img/my_project/ring3.jpg) no-repeat; background-size:200px 300px;}
+.scroll_page li:nth-child(4){ background:url(../img/my_project/ring4.jpg) no-repeat; background-size:200px 300px;}
+.scroll_page li:nth-child(5){ background:url(../img/my_project/ring5.jpg) no-repeat; background-size:200px 300px;}
+.scroll_page li:nth-child(6){ background:url(../img/my_project/ring6.jpg) no-repeat; background-size:200px 300px;}
+.scroll_page li:nth-child(7){ background:url(../img/my_project/ring7.jpg) no-repeat; background-size:200px 300px;}
+.scroll_page li:nth-child(8){ background:url(../img/my_project/ring8.jpg) no-repeat; background-size:200px 300px;}
+.scroll_page li:nth-child(9){ background:url(../img/my_project/ring9.jpg) no-repeat; background-size:200px 300px;}
+.scroll_page li:nth-child(10){ background:url(../img/my_project/ring10.jpg) no-repeat; background-size:200px 300px;}
+.scroll_page li:nth-child(11){ background:url(../img/my_project/ring11.jpg) no-repeat; background-size:200px 300px;}
+.scroll_page li:nth-child(12){ background:url(../img/my_project/ring12.jpg) no-repeat; background-size:200px 300px;}
+/*翻墙*/
+.turn_wall{ width:960px; height:600px; overflow:hidden;}
+.turn_wall p{ text-align:center; color:#fff; font-size:30px; line-height:50px;}
+.turn_wall ul{ width:480px; margin:20px auto;}
+.turn_wall li{ width:150px; height:150px; background:rgba(0,204,204,0.4); margin:0 10px 10px 0; position:relative; overflow:hidden;}
+.turn_wall span{ width:150px; height:150px; position:absolute; background:blue; top:-150px; left:0;}
+/*返回顶部*/
+#to_top{ width:49px; height:67px; background:url(../img/my_project/top.gif) no-repeat; position:fixed; right:0; bottom:200px; display:none;}
 
 
 
